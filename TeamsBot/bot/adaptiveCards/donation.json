@@ -1,0 +1,89 @@
+{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+          {
+              "type": "Column",
+              "width": 3,
+              "items": [
+                  {
+                      "type": "TextBlock",
+                      "text": "${title}",
+                      "weight": "bolder",
+                      "size": "extraLarge",
+                      "spacing": "none",
+                      "wrap": true
+                  },
+                  {
+                      "type": "TextBlock",
+                      "text": "Raised by ${by}.   ${donation_type}",
+                      "isSubtle": true,
+                      "spacing": "none",
+                      "wrap": true
+                  },
+                  {
+                      "type": "TextBlock",
+                      "text": "Raised until now ${raised} /**${target}** ${currency}",
+                      "size":"Large",
+                      "spacing": "large",
+                      "wrap": true
+                  },
+                  {
+                      "type": "TextBlock",
+                      "text": "${desc}",
+                      "size": "small",
+                      "wrap": true
+                  }
+              ]
+          }
+      ]
+  },
+    {
+      "type": "Input.Text",
+      "id": "amount",
+      "placeholder": "Amount you would like to donate"
+    },
+    {
+      "type": "TextBlock",
+      "text": "${currency}",
+      "isVisible": false,
+      "id": "currency"
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "country",
+      "style": "compact",
+      "isMultiSelect": false,
+      "label": "Your Country:",
+      "choices": [
+        {
+          "$data": "${data}",
+          "title": "${name}",
+          "value": "${currency_code}"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Donate",
+      "data": {
+        "msteams": {
+            "type": "task/fetch"
+        },
+        "wallet": "${wallet_id}",
+        "donatestr": "${donatestr}"
+      }
+    },
+    {
+      "type": "Action.OpenUrl",
+      "title": "More Info",
+      "url": "${link}"
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.4"
+}

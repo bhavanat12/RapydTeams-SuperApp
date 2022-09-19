@@ -1,0 +1,85 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Buy Merchandise!!",
+                    "size": "Medium",
+                    "wrap": true
+                }
+            ],
+            "style": "good"
+        },
+        {
+            "$data": "${data}",
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "width": 1,
+                    "type": "Column",
+                    "items": [
+                        {
+                            "type": "Input.Toggle",
+                            "id": "${$index}"
+                        }
+                    ],
+                    "verticalContentAlignment": "Center"
+                },
+                {
+                    "width": 7,
+                    "type": "Column",
+                    "verticalContentAlignment": "bottom",
+                    "items": [
+                        {
+                            "type": "Image",
+                            "alt": "${attachment}",
+                            "url": "https://rapydattach.blob.core.windows.net/rapyd-attachments/${attachment}",
+                            "msTeams": {
+                                "allowExpand": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "items": [{
+                        "type": "TextBlock",
+                        "wrap": true,
+                        "text": "${subject}"
+                    }],
+                    "verticalContentAlignment": "center",
+                    "width": 2
+                },
+                {
+                    "type": "Column",
+                    "spacing": "Medium",
+                    "items": [{
+                        "type": "TextBlock",
+                        "wrap": true,
+                        "text": "${price}"
+                    }],
+                    "verticalContentAlignment": "center",
+                    "width": 1
+                }
+            ]
+        }
+            
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Buy!",
+            "data": {
+                "msteams": {
+                    "type": "task/fetch"
+                },
+                "data": "${instring}"
+            }
+          }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2"
+}

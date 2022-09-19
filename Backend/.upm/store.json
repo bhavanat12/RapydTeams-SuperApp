@@ -1,0 +1,1 @@
+{"version":2,"languages":{"nodejs-npm":{"specfileHash":"fbb93a4f1a526f572e525faad48b971b","lockfileHash":"0e71d16711771355e413010cf2a3ac2e","guessedImports":["dotenv","express","hbs","express-fileupload","azure-storage","into-stream"],"guessedImportsHash":"eb154b8b16b49dd7f02c636556006e73"}}}

@@ -1,0 +1,109 @@
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.2",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "Tell us about the fundraiser",
+            "weight": "Bolder",
+            "size": "Medium"
+        },
+        {
+            "type": "TextBlock",
+            "text": "We just need a few more details to setup the fundraiser",
+            "isSubtle": true,
+            "wrap": true
+        },
+        {
+            "type": "TextBlock",
+            "text": "Title",
+            "wrap": true
+        },
+        {
+            "type": "Input.Text",
+            "id": "title",
+            "spacing": "None"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Description",
+            "wrap": true
+        },
+        {
+            "type": "Input.Text",
+            "id": "desc",
+            "spacing": "None"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Amount raised until now",
+            "wrap": true
+        },
+        {
+            "type": "Input.Number",
+            "id": "raised",
+            "spacing": "None"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Target Amount to be raised",
+            "wrap": true
+        },
+        {
+            "type": "Input.Number",
+            "id": "target",
+            "spacing": "None"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "id": "currency",
+            "style": "compact",
+            "isMultiSelect": false,
+            "label": "Currency",
+            "choices": [
+              {
+                "$data": "${data}",
+                "title": "${code}",
+                "value": "${code}"
+              }
+            ]
+          },
+        {
+            "type": "TextBlock",
+            "text": "Link to fundraiser"
+        },
+        {
+            "type": "Input.Text",
+            "id": "link",
+            "placeholder": "https://link-to-site.com/",
+            "spacing": "None"
+        },
+        {
+            "type": "Input.ChoiceSet",
+            "id": "type",
+            "style": "compact",
+            "label": "Collect funds in Personal or Company wallet",
+            "isMultiSelect": false,
+            "value": "1",
+            "choices": [
+              {
+                "title": "Personal",
+                "value": "1"
+              },
+              {
+                "title": "Company",
+                "value": "2"
+              }
+            ]
+          }
+    ],
+    "actions": [
+        {
+            "type": "Action.Execute",
+            "title": "Share with Team",
+            "verb": "donate",
+            "fallback": "Action.Submit"
+        }
+    ]
+}

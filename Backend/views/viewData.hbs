@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    	<title>RapydTeams</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style.css">
+
+  <script src="https://statics.teams.cdn.office.net/sdk/v1.5.2/js/MicrosoftTeams.min.js" asp-append-version="true"></script>
+    <script>
+        function validateForm() {
+            microsoftTeams.initialize();
+
+          var inputFormDiv = document.getElementById('inputForm');
+          var inputLength = (inputFormDiv.getElementsByTagName('input').length -1)/3;
+
+          console.log(inputLength);
+          
+          let customerInfo = {};
+          for (let i = 0; i < inputLength; i++) {
+            var sub = "subject"+String(i);
+            var pri = "price"+String(i);
+            var att = "attachment"+String(i);
+
+            let tempStore = {};
+
+            tempStore["subject"] = document.getElementById(String(sub)).value;
+            tempStore["price"] = document.getElementById(pri).value;
+            tempStore["attachment"] = document.getElementById(att).value;
+
+            customerInfo[String(i)] = tempStore;
+          }
+          console.log(customerInfo);
+            microsoftTeams.tasks.submitTask(customerInfo, "{{ botid }}");
+            return true;
+        }
+    </script>
+</head>
+<body class="img js-fullheight" style="background-image: url('images/bgImg.png');">
+
+
+<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+					<div class="login-wrap p-0" id="inputForm">
+		      	<h3 class="mb-4 text-center">Uploaded Data</h3>
+
+
+            <form ref='uploadForm' 
+              onSubmit="return validateForm()"
+        			encType="multipart/form-data">
+          {{#each sellingData}}
+            {{#with this}}
+
+              <div class="form-group">
+                  <input type="number" class="form-control" id="price{{@key}}" name="price{{@key}}" value="{{price}}" style="background-color: gray;" readonly >
+                </div>
+
+              <div class="form-group">
+                  <input type="text" class="form-control" id="subject{{@key}}" name="subject{{@key}}" value="{{subject}}" style="background-color: gray;" readonly>
+                </div>
+
+              <div class="form-group">
+                  <input type="text" class="form-control" id="attachment{{@key}}" name="attachment{{@key}}" style="background-color: gray;" value="{{attachment}}" readonly>
+                </div>
+              
+            <br>
+            <br>
+            {{/with}}
+            {{/each}}
+        
+            <br>
+              
+        				<input type="submit" value="Confirm" class="form-control btn btn-primary submit px-3">
+
+        		</form>	
+          </div>
+      </div>
+</div>
+
+</body>
+</html>
